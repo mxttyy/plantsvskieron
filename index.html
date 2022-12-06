@@ -1,371 +1,116 @@
-<!DOCTYPE HTML>
-<html lang = "en">
-	<head>
-		<title>Plants Vs Zombies</title>
-		<style>
-			canvas {
-				border:1px black solid;
-				position:absolute;
-				top:0;
-				left:0;
-			}
-		</style>
-		<script src="scripts/plants.js"></script>
-	</head>
-	<body>	
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="style/game.css">
+</head>
+<body>
+<!--首页-->
+<div class="wrap home" id="home">
+    <div class="made">
+        <p>制作：曹人予</p>
+        <p>Made By Cry</p>
+    </div>
+    <a href="#" id="start"></a>
+    <footer>&copy; 2016 cry 山寨版</footer>
+</div>
+<!--导航界面-->
+<div class="wrap interface" id="interface">
+    <div class="made">
+        <p>制作：曹人予</p>
+        <p>Made By Cry</p>
+    </div>
+    <!--墓碑导航-->
+    <a href="#" id="game"></a>
+    <a href="#" id="survival"></a>
+    <a href="#" id="challenges"></a>
+    <!--图鉴导航-->
+    <a href="#" id="almanac"></a>
+    <!--底部导航-->
+    <div class="btn" id="option"></div>
+    <div class="btn" id="help"></div>
+    <div class="btn" id="quit"></div>
+    <footer>&copy; 2016 cry 山寨版</footer>
+</div>
+<!--关卡界面-->
+<div class="wrap inter-bg" id="menu-page">
+    <div id="level">
+        <img src="img/interface/OptionsMenuback8.png" id="menu">
+        <h3>第一大关</h3>
+        <ul>
+            <li><a href="game.html#1">第一关</a></li>
+            <li><a href="game.html#2">第二关</a></li>
+            <li><a href="game.html#3">第三关</a></li>
+            <li><a href="game.html#4">第四关</a></li>
+            <li><a href="game.html#5">第五关</a></li>
+            <li><a href="game.html#6">第六关</a></li>
+            <li><a href="game.html#7">第七关</a></li>
+            <li><a href="game.html#8">第八关</a></li>
+        </ul>
+        <div id="back"><p>返回</p></div>
+    </div>
+</div>
+<!--图鉴索引界面-->
+<div class="wrap inter-bg" id="almanac-page">
+    <div class="almanac-menu">
+        <h3>图鉴——索引</h3>
+        <img src="img/interface/SunFlower.gif" alt="SunFlower" id="SunFlower">
+        <img src="img/1.gif" alt="Zombie">
+        <a href="#" id="almanac-plant">查看植物</a>
+        <a href="#" id="almanac-zombie">查看僵尸</a>
+        <a href="#" id="almanac-close">关闭</a>
+    </div>
+</div>
+<!--植物图鉴-->
+<div class="wrap inter-bg" id="almanac-plant-page">
+    <div class="almanac-all-menu almanac-plant-menu">
+        <h3>图鉴——植物</h3>
+        <img src="img/Peashooter.png" id="almanac-peashooter-img">
+        <p>100</p>
+        <div>
+            <div id="almanac-peashooter-des">
+                <div>
+                    <img src="img/Peashooter.gif" alt="Peashooter">
+                </div>
+                <h4>豌豆射手</h4>
+                <p>豌豆射手，程序猿Cry的好基友。他们通过发射豌豆来攻击僵尸。</p>
+                <p>伤害：<span>中等</span></p>
+                <p>一棵植物，怎么能如此快地生长，并发射如此多的豌豆呢？豌豆射手："努力工作，奉献自己，再加上一份阳光，高纤维和氧化碳均衡搭配，这种健康早餐一切成为可能。"</p>
+                <p>花费：<span>100</span></p>
+            </div>
+        </div>
+        <a href="#" id="almanac-plant-close">返回</a>
+    </div>
+</div>
+<!--僵尸图鉴-->
+<div class="wrap inter-bg" id="almanac-zombie-page">
+    <div class="almanac-all-menu almanac-zombie-menu">
+        <h3>图鉴——僵尸</h3>
+        <img src="img/interface/Zombie.png" id="almanac-zombie-img">
+        <p>50</p>
+        <div>
+            <div id="almanac-zombie-des">
+                <div>
+                    <img src="img/1.gif" alt="Zombie">
+                </div>
+                <h4>领带僵尸</h4>
+                <p>韧性：<span>低</span></p>
+                <p>僵尸老大的头号小弟，这种僵尸喜爱脑髓，贪婪而不知足。脑髓，脑髓，脑髓，夜以继日地追求着。老而臭的脑髓？腐烂的脑髓？都没关系。僵尸需要他们!</p>
+            </div>
+        </div>
+        <a href="#" id="almanac-zombie-close">返回</a>
+    </div>
+</div>
+<!--帮助界面-->
+<div class="wrap inter-bg" id="help-page">
+    <div></div>
+</div>
+<!--暂未开通界面-->
+<div class="wrap inter-bg" id="void-page">
+    <div><p>暂未开通</p></div>
+</div>
+
+<script src="script/game.js"></script>
+</body>
 </html>
-<script>
-	gamefield = {
-        background: "#bff9a2",
-		numX:15,
-		numY:10,
-		playgroundWidth:80,
-		playgroundHeight:80,
-		gamefield:[],
-		fill:function(field){
-			for(var i=0;i<this.numY;i++){
-				var helper=[];
-				for(var j=0;j<this.numX;j++){
-					helper.push(0);
-				}
-				field.push(helper);
-			};
-		},
-		draw:function(){
-			context.beginPath();
-			context.rect(0, 0, this.numX*this.playgroundWidth, canvas.height);
-			context.fillStyle = this.background;
-			context.fill();
-		}
-	};
-	
-	sidebar={
-		background:"#e6f7de",
-		draw:function(){
-			
-			/* Draw sidebar */
-			context.beginPath();
-			context.rect(gamefield.numX*gamefield.playgroundWidth, 0, 4.5*gamefield.playgroundWidth, canvas.height);
-			context.fillStyle = this.background;
-			context.fill();
-
-			/* Draw suns */
-			
-			context.font = 'italic 35pt Calibri';
-			context.fillStyle = 'black';
-			context.fillText("Suns: "+snumb, (gamefield.numX*gamefield.playgroundWidth+10), 45);
-            context.fillText("Cost", (gamefield.numX*gamefield.playgroundWidth+250), 45 )
-			
-			/* Draw plants */
-			
-			for(var i in this.plants){
-				var objective =this.plants[i];
-				objective.image.src="images/"+objective.img;								
-				if(player.select[0]==objective.name){
-					context.beginPath();
-					context.rect(objective.x, objective.y, gamefield.playgroundWidth, gamefield.playgroundHeight);
-				    context.fillStyle = '#444';
-				    context.fill();
-				}
-				context.drawImage(objective.image,objective.x,objective.y,gamefield.playgroundWidth,gamefield.playgroundHeight);
-			}
-		},
-		
-		/* List of plants and cost for them*/
-		
-		plants:{
-			0:{
-				id:"a",
-				image : new Image(),
-				img: "SunflowerHD.png",
-				name:"sunflower",
-				x:1250,
-				y:65
-			},
-			1:{
-				id:"b",
-				image : new Image(),
-				img: "PeashooterHD.png",
-				name:"peashooter",
-				x:1250,
-				y:65+90
-			},
-			2:{
-				id:"c",
-				image : new Image(),
-				img: "WallnutHD.png",
-				name:"wallnut",
-				x:1250,
-				y:65+180
-			},
-            3:{
-                id:"d",
-                image : new Image(),
-                img: "25.jpg",
-                name: "cost25",
-                x:1450,
-                y:65
-              },
-            4:{
-                id:"e",
-                image : new Image(),
-                img: "50.jpg",
-                name: "cost50",
-                x:1450,
-                y:65+90
-              },
-            5:{
-                id:"f",
-                image : new Image(),
-                img: "100.jpg",
-                name: "cost100",
-                x:1450,
-                y:65+180
-              }
-		}
-	};
-	
-	player={
-		select:false
-	};
-	
-	function init(){
-		
-		/* Canvas */
-		
-		canvas= document.createElement("canvas");
-		canvas.width=window.innerWidth;
-		canvas.height=window.innerHeight;
-		document.body.appendChild(canvas);
-		context = canvas.getContext('2d');
-			
-		/* Variables */
-		
-		isPlaying=false;
-		ticks=0;
-		snumb=200;
-		lastZombieAdd=Date.now();
-		
-		/* Arrays */
-		
-		plants=[];
-		zombies=[];
-		suns=[];
-		shots=[];
-		
-		/* Functions */
-		
-		gamefield.fill(gamefield.gamefield);
-		
-	}
-
-	function mainLoop(){
-		
-		check();
-		spawn();
-		draw();
-		move();
-		ticks++;
-		
-		if(isPlaying){
-			requestAnimationFrame(mainLoop);
-		}
-	}
-
-	function draw(){
-		
-		/* Draw game field */
-		
-		gamefield.draw();
-		
-		/* Draw Plants */
-        
-		for(var i in plants){
-			plants[i].draw();
-		}
-		
-		/* Draw zombies */
-		
-		for(var i in zombies){
-			zombies[i].draw();
-		}
-		
-		/* Draw shots */
-		
-		for(var i in shots){
-			shots[i].draw();
-		}
-		
-		/* Draw suns */
-		
-		for(var i in suns){
-			suns[i].draw();
-		}
-		
-		/* Draw sidebar */
-		
-		sidebar.draw();
-	}
-
-	function move(){
-		
-		/* Move zombies */
-		
-		for(var i in zombies){
-			zombies[i].move();
-		}
-		
-		/* Move suns */
-		
-		for(var i in suns){
-			suns[i].move();
-		}
-		
-		/* Move shots */
-		
-		for(var i in shots){
-			shots[i].move();
-		}
-	}
-
-	function check(){
-		
-		/*Check if plant shots or produce suns*/
-		
-		for(var i in plants){
-			if(typeof(plants[i].checkGettingSun) === "function"){
-				plants[i].checkGettingSun();
-			}
-			if(typeof(plants[i].checkShot) === "function"){
-				plants[i].checkShot();
-			}
-		}
-		i=0;
-		
-		/* Check suns life */
-		
-		for(var i in suns){
-			if(suns[i].checkLife()){
-				suns.splice(i,1);
-			}
-		}
-		i=0;
-		
-		/* Check if shot hit the target */
-		
-		for(var i in shots){
-			var objective=shots[i];	
-			if(typeof(objective.checkColision) === "function"){		
-				if(objective.checkColision()){
-					shots.splice(i,1);
-					continue;	
-				}
-			}
-			if(typeof(objective.life) != "undefined"){
-				if(objective.life<0){
-					objective.target.healt--;
-					if(objective.target.healt<=0){
-						zombies.splice(zombies.indexOf(objective.target),1);
-					}
-					shots.splice(i,1);
-					continue;	
-				}
-			}
-			if(objective.x-objective.range>=gamefield.numX*gamefield.playgroundWidth){
-				shots.splice(i,1);
-			}
-		}
-		i=0;
-		
-		
-		for(var i in zombies){
-			zombies[i].checkBite();
-		}
-	}
-	
-	function spawn(){
-		
-		/* Add new zombie every 10 seconds*/
-		
-		if(Date.now()-lastZombieAdd>=10000){
-			var row=Math.floor(Math.random()*10);
-			zombies.push(new walker((gamefield.numX*gamefield.playgroundWidth+40),row*gamefield.playgroundHeight));
-			lastZombieAdd=Date.now();
-		}
-	}
-	
-	function click(data){
-		
-		/* If click in sidebar */
-		
-		for(var j in sidebar.plants){
-			var objective=sidebar.plants[j];
-			var X=data.clientX;
-			var Y=data.clientY;
-			var click=((X>objective.x)&&(X<objective.x+gamefield.playgroundWidth)&&(Y>objective.y)&&(Y<objective.y+gamefield.playgroundHeight));
-			if(click){
-				if(player.select[0]==objective["name"]){
-					player.select=false;
-					break;
-				}
-				else{
-					if(snumb-window[objective["name"]].prototype.cost>=0){
-						player.select=[objective["name"],objective["id"]];
-						break;
-					}
-				}
-			}
-		}
-		
-		/* If click in sun */
-		
-		for(var i in suns){
-			var objective=suns[i];
-			if(clickIn(X,Y,objective)){
-				snumb+=objective.suns;
-				suns.splice(i,1);
-				return true;
-			}
-		}
-		
-		/* If click in the game field */
-		
-		if((data.x>=0)&&(data.x<=gamefield.numX*gamefield.playgroundWidth)&&(data.y>=0)&&(data.y<=gamefield.numY*gamefield.playgroundHeight)&&(player.select)){
-			var Xko=Math.floor(X/gamefield.playgroundWidth);
-			var Yko=Math.floor(Y/gamefield.playgroundHeight);
-			if(gamefield.gamefield[Yko][Xko]!=0){
-				return false;
-			}
-			plants.push(new window[player.select[0]](data.clientX,data.clientY));
-			gamefield.gamefield[Yko][Xko]=player.select[1];
-			player.select=false;			
-		}
-	}
-	
-	function colision(a,b){
-  		if((b.x+b.width>a.x)&&
-    		(b.y+b.height>a.y)&&
-    		(b.x<a.x+a.width)&&
-    		(b.y<a.y+a.height)){
-    		return 1;
-  		}  
-		return 0;
-	}
-	
-	function clickIn(x,y,obj){
-		if((obj.x<x)&&(obj.x+obj.range*2>x)&&(obj.y<y)&&(obj.y+obj.range*2>y)){
-			return 1;
-		}
-		return 0;
-	}
-	
-	window.onclick=function(d){
-		click(d);
-	};
-	
-	init();
-	isPlaying=true;
-	mainLoop();
-	
-</script>
